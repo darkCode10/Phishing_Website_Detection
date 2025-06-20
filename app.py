@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 import pickle
+from elmModel import ELM
 import joblib
 
 elm=joblib.load('elm_model.pkl')
@@ -215,12 +216,13 @@ with st.form("prediction_form"):
 
     st.write("") # Add some vertical space
     submitted = st.form_submit_button("Predict Status")
-    inputs=pd.DataFrame([input_values]).T
+    inputs=pd.DataFrame([input_values])
     
     pred=elm.predict(inputs)
     if submitted:
-            st.write(pred)
+        if pred==1:
             st.success('Prediction: Legitimate Website') # Use st.success for "Legitimate"
+        else:
             st.error('Prediction: Phishing Website') # Use st.error for "Phishing"
     
 # --- Footer ---
