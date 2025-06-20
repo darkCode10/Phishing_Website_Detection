@@ -1,0 +1,13 @@
+prefix=D:/Gen Ai/Python/venv/Library
+exec_prefix=D:/Gen Ai/Python/venv/Library
+libdir=D:/Gen Ai/Python/venv/Library/lib
+sharedlibdir=D:/Gen Ai/Python/venv/Library/lib
+includedir=D:/Gen Ai/Python/venv/Library/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.13
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
