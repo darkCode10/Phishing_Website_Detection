@@ -4,9 +4,11 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pickle
 from elmModel import ELM
+from sklearn.svm import SVC
 import joblib
 
 elm=joblib.load('elm_model.pkl')
+#svm=joblib.load('svm_model.pkl')
 
 with open('elm_evaluation.pkl','rb') as file:
     elm_evaluation=pickle.load(file)
