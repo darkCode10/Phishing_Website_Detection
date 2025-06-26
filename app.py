@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import pickle
 from elmModel import ELM
-from sklearn.svm import SVC
 import joblib
 
 elm=joblib.load('elm_model.pkl')
