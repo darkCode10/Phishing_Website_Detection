@@ -1,7 +1,10 @@
 import streamlit as st
 import pandas as pd
+import plotly.graph_objects as go
+import plotly.express as px
 import pickle
 from elmModel import ELM
+from sklearn.svm import SVC
 import joblib
 
 elm=joblib.load('elm_model.pkl')
