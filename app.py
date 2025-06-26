@@ -229,4 +229,4 @@ with st.form("prediction_form"):
     
 # --- Footer ---
 st.markdown("---") # A simple line separator
-st.write("Designed & Developed by an Expert Frontend Developer.")
+st.write("Designed & Developed by Muhammad Ahsaan.")
