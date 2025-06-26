@@ -5,16 +5,19 @@ import plotly.express as px
 import pickle
 from sklearn.svm import SVC
 
-
+#Reading svm model which I Trained in svmTraining.ipynb
 with open('svm_model.pkl','rb') as file:
     svm=pickle.load(file)
 
+#Getting evaluation metrices values of ELM model
 with open('elm_evaluation.pkl','rb') as file:
     elm_evaluation=pickle.load(file)
 
+#Getting evaluation metrices values of SVM model
 with open('svm_evaluation.pkl','rb') as file:
     svm_evaluation=pickle.load(file)
 
+#Getting evaluation metrices values of NB model
 with open('nb_evaluation.pkl','rb') as file:
     nb_evaluation=pickle.load(file)
                             
@@ -25,8 +28,9 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# --- Model Data (Hardcoded) ---
+#Model Data (Hardcoded)
 model_data = {
+    #Intializing evaluation metrices values of all models in a object
     "ELM": {
         "accuracy": elm_evaluation['accuracy'],
         "precision": elm_evaluation['precision'],
