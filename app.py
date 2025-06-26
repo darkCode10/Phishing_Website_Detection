@@ -3,12 +3,11 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 import pickle
-from elmModel import ELM
 from sklearn.svm import SVC
-import joblib
 
-elm=joblib.load('elm_model.pkl')
-#svm=joblib.load('svm_model.pkl')
+
+with open('svm_model.pkl','rb') as file:
+    svm=pickle.load(file)
 
 with open('elm_evaluation.pkl','rb') as file:
     elm_evaluation=pickle.load(file)
@@ -185,7 +184,7 @@ with tab_nb:
 
 # --- Section 3: Interactive Prediction Tool ---
 st.header("Interactive Prediction Tool")
-st.write("Test the model's logic. Based on its superior performance, this tool uses a simplified version of the ELM model's decision-making process. Input the features of a website below to get a simulated phishing prediction.")
+st.write("Test the model's logic. Based on its superior performance, this tool uses a simplified version of the SVM model's decision-making process. Input the features of a website below to get a simulated phishing prediction.")
 
 with st.form("prediction_form"):
     features = [
@@ -203,8 +202,8 @@ with st.form("prediction_form"):
                 readable_label = feature.replace('_', ' ').capitalize()
                 input_values[feature] = st.selectbox(
                     f"{readable_label}",
-                    options=[-1, 1],
-                    format_func=lambda x: {1: "Safe (1)", -1: "Phishing (-1)"}[x],
+                    options=[0, 1],
+                    format_func=lambda x: {1: "Safe (1)", 0: "Phishing (0)"}[x],
                     key=f"input_{feature}"
                 )
             else:
@@ -220,7 +219,7 @@ with st.form("prediction_form"):
     submitted = st.form_submit_button("Predict Status")
     inputs=pd.DataFrame([input_values])
     
-    pred=elm.predict(inputs)
+    pred=svm.predict(inputs)
     if submitted:
         if pred==1:
             st.success('Prediction: Legitimate Website') # Use st.success for "Legitimate"
